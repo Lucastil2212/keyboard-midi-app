@@ -58,6 +58,59 @@ h1 {
   box-shadow: none;
 }
 
+#filter-controls {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #333;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  color: #f0f0f0;
+  font-size: 0.9rem;
+  width: 300px;
+}
+
+#filter-controls label {
+  margin-top: 10px;
+}
+
+#filter-controls input[type="range"],
+#filter-controls select {
+  margin-top: 5px;
+  width: 100%;
+  background-color: #444;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 5px;
+}
+
+#recording-controls {
+  margin-top: 20px;
+}
+
+#recording-controls button {
+  margin-right: 20px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  background-color: #1db954;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+#recording-controls button:hover {
+  background-color: #17a743;
+  box-shadow: 0 4px 10px rgba(29, 185, 84, 0.3);
+}
+
+#recording-controls button:active {
+  background-color: #128d39;
+  box-shadow: none;
+}
+
 #keyboard {
   position: relative;
   display: flex;
@@ -117,54 +170,6 @@ h1 {
   height: 100vh;
   pointer-events: none;
   z-index: -1;
-}
-
-#recording-controls {
-  margin-top: 20px;
-}
-
-#recording-controls button {
-  margin-right: 20px;
-  padding: 10px 15px;
-  font-size: 1rem;
-  background-color: #1db954;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s, box-shadow 0.2s;
-}
-
-#recording-controls button:hover {
-  background-color: #17a743;
-  box-shadow: 0 4px 10px rgba(29, 185, 84, 0.3);
-}
-
-#recording-controls button:active {
-  background-color: #128d39;
-  box-shadow: none;
-}
-  
-#ad-section {
-  margin-top: 30px;
-  text-align: center;
-  font-size: 1.2rem;
-  color: #1db954;
-  background-color: #222;
-  padding: 15px 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(29, 185, 84, 0.3);
-  width: 100%;
-}
-
-#ad-section a {
-  color: #1db954;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-#ad-section a:hover {
-  text-decoration: underline;
 }
 
   

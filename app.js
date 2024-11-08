@@ -11,6 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const analyser = audioContext.createAnalyser();
     analyser.fftSize = 2048;
   
+    const filter = audioContext.createBiquadFilter();
+    filter.type = "lowpass";
+    filter.frequency.value = 1000;
+    filter.Q.value = 1;
+    filter.gain.value = 0;
+  
     let currentVolume = 0.5;
     let instrumentType = 'sine';
     let isRecording = false;
@@ -18,6 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
   
     const instrumentSelect = document.getElementById("instrument");
     const volumeControl = document.getElementById("volume");
+    const filterTypeControl = document.getElementById("filterType");
+    const filterFrequencyControl = document.getElementById("filterFrequency");
+    const filterQControl = document.getElementById("filterQ");
+    const filterGainControl = document.getElementById("filterGain");
+  
     const recordButton = document.getElementById("recordButton");
     const playbackButton = document.getElementById("playbackButton");
     const saveButton = document.getElementById("saveButton");
@@ -33,6 +44,22 @@ document.addEventListener("DOMContentLoaded", () => {
   
     volumeControl.addEventListener("input", (event) => {
       currentVolume = parseFloat(event.target.value);
+    });
+  
+    filterTypeControl.addEventListener("change", (event) => {
+      filter.type = event.target.value;
+    });
+  
+    filterFrequencyControl.addEventListener("input", (event) => {
+      filter.frequency.value = parseFloat(event.target.value);
+    });
+  
+    filterQControl.addEventListener("input", (event) => {
+      filter.Q.value = parseFloat(event.target.value);
+    });
+  
+    filterGainControl.addEventListener("input", (event) => {
+      filter.gain.value = parseFloat(event.target.value);
     });
   
     recordButton.addEventListener("click", () => {
@@ -63,7 +90,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const gainNode = audioContext.createGain();
   
       oscillator.connect(gainNode);
-      gainNode.connect(analyser);
+      gainNode.connect(filter);
+      filter.connect(analyser);
       analyser.connect(audioContext.destination);
   
       oscillator.type = instrumentType;
@@ -148,6 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
+  
   
   
   
