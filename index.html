@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Keyboard MIDI Mapper</title>
+  <title>QuantAudio - Keyboard MIDI Mapper</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Keyboard MIDI Mapper</h1>
+  <h1>QuantAudio</h1>
   
   <div id="controls">
     <label for="instrument">Instrument:</label>
@@ -22,17 +22,47 @@
     <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
   </div>
 
-  <div id="keyboard">
-    <div class="key" data-note="C4">C</div>
-    <div class="key" data-note="D4">D</div>
-    <div class="key" data-note="E4">E</div>
-    <div class="key" data-note="F4">F</div>
-    <div class="key" data-note="G4">G</div>
-    <div class="key" data-note="A4">A</div>
-    <div class="key" data-note="B4">B</div>
-    <div class="key" data-note="C5">C</div>
+  <div id="recording-controls">
+    <button id="recordButton">Start Recording</button>
+    <button id="playbackButton" disabled>Play Recording</button>
+    <button id="saveButton" disabled>Save Recording</button>
   </div>
+
+  <div id="keyboard">
+    <!-- Bass keys -->
+    <div class="key white-key" data-note="C2">C</div>
+    <div class="key black-key" data-note="C#2"></div>
+    <div class="key white-key" data-note="D2">D</div>
+    <div class="key black-key" data-note="D#2"></div>
+    <div class="key white-key" data-note="E2">E</div>
+    <div class="key white-key" data-note="F2">F</div>
+    <div class="key black-key" data-note="F#2"></div>
+    <div class="key white-key" data-note="G2">G</div>
+    <div class="key black-key" data-note="G#2"></div>
+    <div class="key white-key" data-note="A2">A</div>
+    <div class="key black-key" data-note="A#2"></div>
+    <div class="key white-key" data-note="B2">B</div>
+    <!-- Existing keys (C4 to C5) -->
+    <div class="key white-key" data-note="C4">C</div>
+    <div class="key black-key" data-note="C#4"></div>
+    <div class="key white-key" data-note="D4">D</div>
+    <div class="key black-key" data-note="D#4"></div>
+    <div class="key white-key" data-note="E4">E</div>
+    <div class="key white-key" data-note="F4">F</div>
+    <div class="key black-key" data-note="F#4"></div>
+    <div class="key white-key" data-note="G4">G</div>
+    <div class="key black-key" data-note="G#4"></div>
+    <div class="key white-key" data-note="A4">A</div>
+    <div class="key black-key" data-note="A#4"></div>
+    <div class="key white-key" data-note="B4">B</div>
+    <div class="key white-key" data-note="C5">C</div>
+  </div>
+
+  <canvas id="visualizer"></canvas>
 
   <script src="app.js"></script>
 </body>
 </html>
+
+
+
