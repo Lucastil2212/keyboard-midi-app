@@ -1,32 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     const keyToNote = {
-      // Bass notes
-      "z": "C2",
-      "s": "C#2",
-      "x": "D2",
-      "d": "D#2",
-      "c": "E2",
-      "v": "F2",
-      "g": "F#2",
-      "b": "G2",
-      "h": "G#2",
-      "n": "A2",
-      "j": "A#2",
-      "m": "B2",
-      // Middle notes
-      "a": "C4",
-      "w": "C#4",
-      "s": "D4",
-      "e": "D#4",
-      "d": "E4",
-      "f": "F4",
-      "t": "F#4",
-      "g": "G4",
-      "y": "G#4",
-      "h": "A4",
-      "u": "A#4",
-      "j": "B4",
-      "k": "C5",
+      "z": "C2", "s": "C#2", "x": "D2", "d": "D#2", "c": "E2",
+      "v": "F2", "g": "F#2", "b": "G2", "h": "G#2", "n": "A2",
+      "j": "A#2", "m": "B2", "a": "C4", "w": "C#4", "s": "D4",
+      "e": "D#4", "d": "E4", "f": "F4", "t": "F#4", "g": "G4",
+      "y": "G#4", "h": "A4", "u": "A#4", "j": "B4", "k": "C5",
     };
   
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -55,6 +33,29 @@ document.addEventListener("DOMContentLoaded", () => {
   
     volumeControl.addEventListener("input", (event) => {
       currentVolume = parseFloat(event.target.value);
+    });
+  
+    recordButton.addEventListener("click", () => {
+      isRecording = !isRecording;
+      recordButton.textContent = isRecording ? "Stop Recording" : "Start Recording";
+      if (!isRecording && recording.length > 0) {
+        playbackButton.disabled = false;
+        saveButton.disabled = false;
+      }
+    });
+  
+    playbackButton.addEventListener("click", () => {
+      playbackRecording();
+    });
+  
+    saveButton.addEventListener("click", () => {
+      const blob = new Blob([JSON.stringify(recording)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "recording.json";
+      a.click();
+      URL.revokeObjectURL(url);
     });
   
     function playNoteWithVisualizer(note, keyElement) {
@@ -93,6 +94,13 @@ document.addEventListener("DOMContentLoaded", () => {
         "G#4": 415.3, "A4": 440.0, "A#4": 466.16, "B4": 493.88, "C5": 523.25,
       };
       return notes[note] || 440;
+    }
+  
+    function playbackRecording() {
+      let startTime = recording[0].time;
+      recording.forEach(entry => {
+        setTimeout(() => playNoteWithVisualizer(entry.note), entry.time - startTime);
+      });
     }
   
     function animateWaveform() {
@@ -140,6 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
+  
   
   
   
