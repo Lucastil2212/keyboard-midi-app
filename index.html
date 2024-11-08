@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keyboard MIDI Mapper</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Keyboard MIDI Mapper</h1>
+  
+  <div id="controls">
+    <label for="instrument">Instrument:</label>
+    <select id="instrument">
+      <option value="sine">Sine</option>
+      <option value="square">Square</option>
+      <option value="sawtooth">Sawtooth</option>
+      <option value="triangle">Triangle</option>
+    </select>
+
+    <label for="volume">Volume:</label>
+    <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+  </div>
+
+  <div id="keyboard">
+    <div class="key" data-note="C4">C</div>
+    <div class="key" data-note="D4">D</div>
+    <div class="key" data-note="E4">E</div>
+    <div class="key" data-note="F4">F</div>
+    <div class="key" data-note="G4">G</div>
+    <div class="key" data-note="A4">A</div>
+    <div class="key" data-note="B4">B</div>
+    <div class="key" data-note="C5">C</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
