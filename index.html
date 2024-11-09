@@ -3,86 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QuantAudio - Keyboard MIDI Mapper</title>
+  <title>QuantAudio - Full MIDI Pad Mixer & Audio Visualizer</title>
+  <meta name="description" content="QuantAudio is a powerful MIDI pad mixer with full audio visualizer, advanced filters, and live mic recording. Create music, record sounds, and customize your experience with a wide range of pitch and octave controls.">
+  <meta name="keywords" content="QuantAudio, MIDI pad, audio visualizer, music mixer, mic recording, sound synthesis, MIDI keyboard, Web Audio API">
+  <meta name="author" content="Your Name or Organization">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>QuantAudio</h1>
-  
-  <div id="controls">
-    <label for="instrument">Instrument:</label>
-    <select id="instrument">
-      <option value="sine">Sine</option>
-      <option value="square">Square</option>
-      <option value="sawtooth">Sawtooth</option>
-      <option value="triangle">Triangle</option>
-    </select>
+  <header>
+    <h1>QuantAudio</h1>
+    <p class="subtitle">Create music with a full MIDI pad mixer, audio visualizer, and mic recording.</p>
+  </header>
 
-    <label for="volume">Volume:</label>
-    <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
-  </div>
+  <main>
+    <section id="controls">
+      <label for="instrument">Instrument:</label>
+      <select id="instrument">
+        <option value="sine">Sine</option>
+        <option value="square">Square</option>
+        <option value="sawtooth">Sawtooth</option>
+        <option value="triangle">Triangle</option>
+      </select>
 
-  <div id="filter-controls">
-    <label for="filterType">Filter Type:</label>
-    <select id="filterType">
-      <option value="lowpass">Low-pass</option>
-      <option value="highpass">High-pass</option>
-      <option value="bandpass">Band-pass</option>
-      <option value="peaking">Peaking</option>
-      <option value="notch">Notch</option>
-      <option value="allpass">All-pass</option>
-      <option value="lowshelf">Low-shelf</option>
-      <option value="highshelf">High-shelf</option>
-    </select>
+      <label for="volume">Volume:</label>
+      <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+    </section>
 
-    <label for="filterFrequency">Frequency (Hz):</label>
-    <input type="range" id="filterFrequency" min="20" max="20000" step="1" value="1000">
+    <section id="filter-controls">
+      <h2>Advanced Filter Options</h2>
+      <label for="filterType">Filter Type:</label>
+      <select id="filterType">
+        <option value="lowpass">Low-pass</option>
+        <option value="highpass">High-pass</option>
+        <option value="bandpass">Band-pass</option>
+        <option value="peaking">Peaking</option>
+        <option value="notch">Notch</option>
+        <option value="allpass">All-pass</option>
+        <option value="lowshelf">Low-shelf</option>
+        <option value="highshelf">High-shelf</option>
+      </select>
 
-    <label for="filterQ">Q Factor:</label>
-    <input type="range" id="filterQ" min="0.1" max="20" step="0.1" value="1">
+      <label for="filterFrequency">Frequency (Hz):</label>
+      <input type="range" id="filterFrequency" min="20" max="20000" step="1" value="1000">
 
-    <label for="filterGain">Gain (dB):</label>
-    <input type="range" id="filterGain" min="-40" max="40" step="1" value="0">
-  </div>
+      <label for="filterQ">Q Factor:</label>
+      <input type="range" id="filterQ" min="0.1" max="20" step="0.1" value="1">
 
-  <div id="recording-controls">
-    <button id="recordButton">Start Recording</button>
-    <button id="playbackButton" disabled>Play Recording</button>
-    <button id="saveButton" disabled>Save Recording</button>
-  </div>
+      <label for="filterGain">Gain (dB):</label>
+      <input type="range" id="filterGain" min="-40" max="40" step="1" value="0">
+    </section>
 
-  <div id="keyboard">
-    <!-- Bass keys -->
-    <div class="key white-key" data-note="C2">C</div>
-    <div class="key black-key" data-note="C#2"></div>
-    <div class="key white-key" data-note="D2">D</div>
-    <div class="key black-key" data-note="D#2"></div>
-    <div class="key white-key" data-note="E2">E</div>
-    <div class="key white-key" data-note="F2">F</div>
-    <div class="key black-key" data-note="F#2"></div>
-    <div class="key white-key" data-note="G2">G</div>
-    <div class="key black-key" data-note="G#2"></div>
-    <div class="key white-key" data-note="A2">A</div>
-    <div class="key black-key" data-note="A#2"></div>
-    <div class="key white-key" data-note="B2">B</div>
-    <!-- Existing keys (C4 to C5) -->
-    <div class="key white-key" data-note="C4">C</div>
-    <div class="key black-key" data-note="C#4"></div>
-    <div class="key white-key" data-note="D4">D</div>
-    <div class="key black-key" data-note="D#4"></div>
-    <div class="key white-key" data-note="E4">E</div>
-    <div class="key white-key" data-note="F4">F</div>
-    <div class="key black-key" data-note="F#4"></div>
-    <div class="key white-key" data-note="G4">G</div>
-    <div class="key black-key" data-note="G#4"></div>
-    <div class="key white-key" data-note="A4">A</div>
-    <div class="key black-key" data-note="A#4"></div>
-    <div class="key white-key" data-note="B4">B</div>
-    <div class="key white-key" data-note="C5">C</div>
-  </div>
+    <section id="recording-controls">
+      <h2>Recording Controls</h2>
+      <button id="recordButton">Start MIDI Recording</button>
+      <button id="micRecordButton">Start Mic Recording</button>
+      <button id="playbackButton" disabled>Play All Recordings</button>
+      <button id="saveButton" disabled>Save All Recordings</button>
+    </section>
+
+    <section id="keyboard">
+      <h2>MIDI Keyboard</h2>
+      <!-- Lower Octave -->
+      <div class="octave" data-octave="C1">
+        <div class="key white-key" data-note="C1">C</div>
+        <div class="key black-key" data-note="C#1"></div>
+        <div class="key white-key" data-note="D1">D</div>
+        <div class="key black-key" data-note="D#1"></div>
+        <div class="key white-key" data-note="E1">E</div>
+        <div class="key white-key" data-note="F1">F</div>
+        <div class="key black-key" data-note="F#1"></div>
+        <div class="key white-key" data-note="G1">G</div>
+        <div class="key black-key" data-note="G#1"></div>
+        <div class="key white-key" data-note="A1">A</div>
+        <div class="key black-key" data-note="A#1"></div>
+        <div class="key white-key" data-note="B1">B</div>
+      </div>
+      <!-- Middle Octave -->
+      <div class="octave" data-octave="C4">
+        <div class="key white-key" data-note="C4">C</div>
+        <div class="key black-key" data-note="C#4"></div>
+        <div class="key white-key" data-note="D4">D</div>
+        <div class="key black-key" data-note="D#4"></div>
+        <div class="key white-key" data-note="E4">E</div>
+        <div class="key white-key" data-note="F4">F</div>
+        <div class="key black-key" data-note="F#4"></div>
+        <div class="key white-key" data-note="G4">G</div>
+        <div class="key black-key" data-note="G#4"></div>
+        <div class="key white-key" data-note="A4">A</div>
+        <div class="key black-key" data-note="A#4"></div>
+        <div class="key white-key" data-note="B4">B</div>
+      </div>
+      <!-- Higher Octave -->
+      <div class="octave" data-octave="C6">
+        <div class="key white-key" data-note="C6">C</div>
+        <div class="key black-key" data-note="C#6"></div>
+        <div class="key white-key" data-note="D6">D</div>
+        <div class="key black-key" data-note="D#6"></div>
+        <div class="key white-key" data-note="E6">E</div>
+        <div class="key white-key" data-note="F6">F</div>
+        <div class="key black-key" data-note="F#6"></div>
+        <div class="key white-key" data-note="G6">G</div>
+        <div class="key black-key" data-note="G#6"></div>
+        <div class="key white-key" data-note="A6">A</div>
+        <div class="key black-key" data-note="A#6"></div>
+        <div class="key white-key" data-note="B6">B</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>QuantAudio &copy; 2023. All rights reserved.</p>
+  </footer>
 
   <canvas id="visualizer"></canvas>
-
   <script src="app.js"></script>
 </body>
 </html>
+
